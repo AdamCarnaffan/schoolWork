@@ -35,25 +35,25 @@ class Game {
     for($x = 1; $x <= $boardSize; $x++) {
       for($y = 1; $y <= $boardSize; $y++) {
         $tempPos = new Pos($x, $y);
-        array_push($this->positionsAvailable, $tempPos);
+        array_push($this->availablePositions, $tempPos);
       }
     }
     // Shuffle all positions 
-    shuffle($positionsAvailable); // To randomize which order the positions are picked in
+    shuffle($this->availablePositions); // To randomize which order the positions are picked in
   }
   
   public function claimPos($player) {
-    $position = array_pop($this->availablePositions);
-    $position->claim = $player;
+    $pickedPos = array_pop($this->availablePositions);
+    $pickedPos->claim = $player;
     array_push($this->takenPositions, $pickedPos);
-    if ($this->checkVictory()) {
+    if ($this->checkVictory($player)) {
       return true;
     } else {
       return false;
     }
   }
   
-  public function checkVictory() {
+  public function checkVictory($player) {
     // Loop player 1 then 2
     /*for ($player = 1; $player < 3; $player++) {
     
@@ -67,9 +67,31 @@ class Game {
   
   public function displayGame() {
     $positions = array_merge($this->availablePositions, $this->takenPositions);
-    foreach ($this->positions as $pos) {
-      
+    $displayPositions = [];
+    foreach ($positions as $pos) {
+      switch ($pos->claim) {
+        case 1:
+          $pos->symbol = "X";
+          break;
+        case 2:
+          $pos->symbol = "O";
+          break;
+        default:
+          $pos->symbol = "-";
+      }
+      $displayPositions[$pos->x][$pos->y] = $pos->symbol;
     }
+    sort($displayPositions);
+    // Construct the table output
+    echo "<table>";
+    foreach ($displayPositions as $position) {
+      echo "<tr>";
+      foreach ($position as $y) {
+        echo "<td>" . $y . "</td>";
+      }
+      echo "</tr>";
+    }
+    echo "</table>";
   }
 }
 
@@ -98,10 +120,12 @@ while ($playing) { // Begin the game loop
   // Player One plays first 
   if ($ticTacToe->claimPos(1)) {
     $playing = false;
+    break;
   }
   // Player Two follows
   if ($ticTacToe->claimPos(2)) {
     $playing = false;
+    break;
   }
 }
 
