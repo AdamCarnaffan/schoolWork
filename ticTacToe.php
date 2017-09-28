@@ -1,3 +1,15 @@
+<html>
+<head>
+  <style>
+    table, tr, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+  
+  
+  </style>
+</head>
+<body>
 <?php 
 
 /* This assignment requires you to create a Tic Tac Toe game that plays itself.  As with common Tic Tac Toe games, player X will compete against player O,
@@ -54,15 +66,12 @@ class Game {
   }
   
   public function checkVictory($player) {
-    // Loop player 1 then 2
-    /*for ($player = 1; $player < 3; $player++) {
-    
-    }*/
-    
+    // Checks for a tie after all positions are taken
     if (count($this->availablePositions) < 1) {
       return true;
+    } else {
+      return false;
     }
-    return false;
   }
   
   public function displayGame() {
@@ -133,5 +142,6 @@ echo $ticTacToe->winner;
 
 // Display
 $ticTacToe->displayGame();
-
  ?>
+</body>
+</html>
