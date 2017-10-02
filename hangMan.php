@@ -47,21 +47,21 @@ try {
 
 if ($userGuess != null) {
 	if (in_array($userGuess, $_SESSION['wordAsArray'])) { // Correct guess
-            $c = 0;
-            foreach ($_SESSION['wordAsArray'] as $letter) {
-                if ($letter == $userGuess) {
-                    $_SESSION['guessedDisplay'][$c] = $letter;
-                    $_SESSION['lettersGuessed']++;
-                }
-                $c++;
-            }
-            $returnMessage = "<font color='green'>That was correct! Keep going!</font>";
+    $c = 0;
+    foreach ($_SESSION['wordAsArray'] as $letter) {
+      if ($letter == $userGuess) {
+        $_SESSION['guessedDisplay'][$c] = $letter;
+        $_SESSION['lettersGuessed']++;
+      }
+      $c++;
+    }
+    $returnMessage = "<font color='green'>That was correct! Keep going!</font>";
 	} else { // Penalty for wrong guess
-            $_SESSION['strikes']++;
-            array_push($_SESSION['wrongLetters'],$userGuess);
-            $returnMessage = "<font color='red'>That was wrong! Try again.</font>";
+    $_SESSION['strikes']++;
+    array_push($_SESSION['wrongLetters'],$userGuess);
+    $returnMessage = "<font color='red'>That was wrong! Try again.</font>";
 	}
-        array_push($_SESSION['guessedLetters'],$userGuess);
+  array_push($_SESSION['guessedLetters'],$userGuess);
 }
 
 //echo $_SESSION['gameWord'] . "</br>";
@@ -91,7 +91,7 @@ foreach ($_SESSION['guessedDisplay'] as $letter) {
 echo "</br>";
 
 // Display Validation Errors on user input
-if (!isset($_POST['newGame'])) {
+if (!isset($_POST['newGame']) && ($win == false && $loss == false)) {
 	echo "<font color='red'>" . $validationError . "</font>";
 }
 
