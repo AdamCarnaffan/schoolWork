@@ -127,11 +127,11 @@ function DrawHangMan($strikes) {
 		$drawing = "|-------------||----
 ";
 		for ($c = 1; $c < 13; $c++) {
-			$drawing .= "|                   
+			$drawing .= "|                  
 ";
 		}
 		$drawing .= "--------------------";
-		
+
     switch ($strikes) {
         case 0:
             echo "<pre>" . $drawing . "</pre>";
@@ -171,23 +171,23 @@ function DrawHangMan($strikes) {
 
 /*  The Plan ;)
  *  |-------------||----
-    |             __    
-    |           /   \   
-    |           \___/   
-    |            |      
-    |            |      
-    |           /|\     
-    |          / | \    
-    |         /  |  \   
-    |            |      
-    |           / \     
-    |          /   \    
-    |         /     \   
+    |             __
+    |           /   \
+    |           \___/
+    |            |
+    |            |
+    |           /|\
+    |          / | \
+    |         /  |  \
+    |            |
+    |           / \
+    |          /   \
+    |         /     \
     --------------------
- * 
- * 
- * 
- * 
+ *
+ *
+ *
+ *
  */
 
 ?>
@@ -196,7 +196,7 @@ function DrawHangMan($strikes) {
 	<input type='submit' name='submit' value='Go!'>
 	<input type='submit' name='restart' value='Restart'>
 </form>
-    
+
 <?php
 // Display incorrect guesses
 echo "<font color='blue'><b>You've incorrectly tried: </b></font>";
